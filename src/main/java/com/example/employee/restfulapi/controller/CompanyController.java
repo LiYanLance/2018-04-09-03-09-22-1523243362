@@ -5,10 +5,7 @@ import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +34,11 @@ public class CompanyController {
     @GetMapping("/page/{page}/pageSize/{pageSize}")
     public List<Company> getCompaniesByPage(@PathVariable int page, @PathVariable int pageSize) {
         return companyRepository.findAll(new PageRequest(page - 1, pageSize)).getContent();
+    }
+
+    @PostMapping
+    public Company addCompany(@RequestBody Company company) {
+        return companyRepository.save(company);
     }
 
 }
