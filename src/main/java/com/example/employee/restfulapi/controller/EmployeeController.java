@@ -44,5 +44,9 @@ public class EmployeeController {
     public Employee updateEmployee(@PathVariable long id, @RequestBody Employee employee) {
         return employeeRepository.exists(id) ? employeeRepository.save(employee) : null;
     }
-    
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteEmployee(@PathVariable long id) {
+        employeeRepository.delete(id);
+    }
 }
