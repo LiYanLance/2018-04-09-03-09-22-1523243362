@@ -1,6 +1,7 @@
 package com.example.employee.restfulapi.controller;
 
 import com.example.employee.restfulapi.entity.Company;
+import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +16,16 @@ import java.util.List;
 public class CompanyController {
 
     @Autowired
-    CompanyRepository companyRepository;
+    private CompanyRepository companyRepository;
 
     @GetMapping
     public List<Company> getCompanies() {
         return companyRepository.findAll();
     }
-    
+
+    @GetMapping("/{id}")
+    public Company getCompany(@PathVariable long id) {
+        return companyRepository.findOne(id);
+    }
+
 }
