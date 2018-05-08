@@ -46,4 +46,8 @@ public class CompanyController {
         return companyRepository.exists(id) ? companyRepository.save(company) : null;
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteCompany(@PathVariable long id) {
+        companyRepository.delete(id);
+    }
 }
