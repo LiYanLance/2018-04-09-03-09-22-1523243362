@@ -41,4 +41,9 @@ public class CompanyController {
         return companyRepository.save(company);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Company updataCompany(@PathVariable long id, @RequestBody Company company) {
+        return companyRepository.exists(id) ? companyRepository.save(company) : null;
+    }
+
 }
