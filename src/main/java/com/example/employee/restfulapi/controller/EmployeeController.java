@@ -39,4 +39,10 @@ public class EmployeeController {
     public Employee addEmployee(@RequestBody Employee employee) {
         return employeeRepository.save(employee);
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Employee updateEmployee(@PathVariable long id, @RequestBody Employee employee) {
+        return employeeRepository.exists(id) ? employeeRepository.save(employee) : null;
+    }
+    
 }
